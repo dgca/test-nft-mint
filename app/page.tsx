@@ -21,13 +21,11 @@ import {
 import { useEffect, useMemo, useState, useCallback } from "react";
 import { Button } from "./components/DemoComponents";
 import { Icon } from "./components/DemoComponents";
-import { Home } from "./components/DemoComponents";
-import { Features } from "./components/DemoComponents";
+import { NFTMintCard } from "@coinbase/onchainkit/nft";
 
 export default function App() {
   const { setFrameReady, isFrameReady, context } = useMiniKit();
   const [frameAdded, setFrameAdded] = useState(false);
-  const [activeTab, setActiveTab] = useState("home");
 
   const addFrame = useAddFrame();
   const openUrl = useOpenUrl();
@@ -96,8 +94,7 @@ export default function App() {
         </header>
 
         <main className="flex-1">
-          {activeTab === "home" && <Home setActiveTab={setActiveTab} />}
-          {activeTab === "features" && <Features setActiveTab={setActiveTab} />}
+          <NFTMintCard contractAddress="0x44dF55B47F24B73190657fE9107Ca43234bbc21E" />
         </main>
 
         <footer className="mt-2 pt-4 flex justify-center">
