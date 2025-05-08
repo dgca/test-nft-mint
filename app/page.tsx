@@ -32,14 +32,17 @@ function useConnectOnMount() {
   const connector = accountConnector || connectors[0];
 
   useEffect(() => {
-    if (!address && isConnectingRef.current && connector?.id === "farcaster") {
+    if (!address && !isConnectingRef.current && connector?.id === "farcaster") {
       isConnectingRef.current = true;
+
+      console.log("attempting to connect to farcaster");
 
       connect(
         { connector: accountConnector || connectors[0] },
         {
           onSuccess: () => {
             isConnectingRef.current = false;
+            console.log("connected to farcaster");
           },
           onError: (err) => {
             isConnectingRef.current = false;
