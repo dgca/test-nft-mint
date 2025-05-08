@@ -1,4 +1,8 @@
-# MiniKit Template
+# Demo to test NFTMintCard in Mini Apps
+
+Link to mini app: https://warpcast.com/miniapps/kvXSOjHsK4Wy/test-nft-mint
+
+---
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-onchain --mini`](), configured with:
 
