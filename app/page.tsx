@@ -18,10 +18,38 @@ import {
   WalletDropdown,
   WalletDropdownDisconnect,
 } from "@coinbase/onchainkit/wallet";
-import { useEffect, useMemo, useState, useCallback } from "react";
+import { useEffect, useMemo, useState, useCallback, useRef } from "react";
 import { Button } from "./components/DemoComponents";
 import { Icon } from "./components/DemoComponents";
 import { NFTMintCard } from "@coinbase/onchainkit/nft";
+import { useConnect } from "wagmi";
+import { useAccount } from "wagmi";
+
+function useConnectOnMount() {
+  const { address, connector: accountConnector } = useAccount();
+  const { connectors, connect } = useConnect();
+  const isConnectingRef = useRef(false);
+  const connector = accountConnector || connectors[0];
+
+  useEffect(() => {
+    if (!address && isConnectingRef.current && connector?.id === "farcaster") {
+      isConnectingRef.current = true;
+
+      connect(
+        { connector: accountConnector || connectors[0] },
+        {
+          onSuccess: () => {
+            isConnectingRef.current = false;
+          },
+          onError: (err) => {
+            isConnectingRef.current = false;
+            console.error("Error connecting to Farcaster:", err);
+          },
+        },
+      );
+    }
+  }, [accountConnector, address, connect, connector?.id, connectors]);
+}
 
 export default function App() {
   const { setFrameReady, isFrameReady, context } = useMiniKit();
@@ -35,6 +63,8 @@ export default function App() {
       setFrameReady();
     }
   }, [setFrameReady, isFrameReady]);
+
+  useConnectOnMount();
 
   const handleAddFrame = useCallback(async () => {
     const frameAdded = await addFrame();
