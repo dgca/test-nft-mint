@@ -34,7 +34,7 @@ export async function GET() {
       primaryCategory: process.env.NEXT_PUBLIC_APP_PRIMARY_CATEGORY,
       tags: [],
       heroImageUrl: process.env.NEXT_PUBLIC_APP_HERO_IMAGE,
-      tagline: process.env.NEXT_PUBLIC_APP_TAGLINE,
+      tagline: process.env.NEXT_PUBLIC_APP_TAGLINE ?? "My cool tagline",
       ogTitle: process.env.NEXT_PUBLIC_APP_OG_TITLE,
       ogDescription:
         process.env.NEXT_PUBLIC_APP_OG_DESCRIPTION ?? "My cool minikit app",
