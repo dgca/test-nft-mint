@@ -39,6 +39,7 @@ export async function GET() {
       ogDescription:
         process.env.NEXT_PUBLIC_APP_OG_DESCRIPTION ?? "My cool minikit app",
       ogImageUrl: process.env.NEXT_PUBLIC_APP_OG_IMAGE,
+      imageUrl: "https://test-nft-mint-coral.vercel.app/embed.png",
     }),
   });
 }
