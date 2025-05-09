@@ -36,7 +36,8 @@ export async function GET() {
       heroImageUrl: process.env.NEXT_PUBLIC_APP_HERO_IMAGE,
       tagline: process.env.NEXT_PUBLIC_APP_TAGLINE,
       ogTitle: process.env.NEXT_PUBLIC_APP_OG_TITLE,
-      ogDescription: process.env.NEXT_PUBLIC_APP_OG_DESCRIPTION,
+      ogDescription:
+        process.env.NEXT_PUBLIC_APP_OG_DESCRIPTION ?? "My cool minikit app",
       ogImageUrl: process.env.NEXT_PUBLIC_APP_OG_IMAGE,
     }),
   });
