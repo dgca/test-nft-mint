@@ -23,8 +23,8 @@ export async function GET() {
     frame: withValidProperties({
       version: process.env.NEXT_PUBLIC_APP_VERSION,
       name: process.env.NEXT_PUBLIC_ONCHAINKIT_PROJECT_NAME,
-      subtitle: process.env.NEXT_PUBLIC_APP_SUBTITLE,
-      description: process.env.NEXT_PUBLIC_APP_DESCRIPTION,
+      subtitle: process.env.NEXT_PUBLIC_APP_SUBTITLE ?? "Subtitle",
+      description: process.env.NEXT_PUBLIC_APP_DESCRIPTION ?? "Description",
       screenshotUrls: [],
       iconUrl: process.env.NEXT_PUBLIC_APP_ICON,
       splashImageUrl: process.env.NEXT_PUBLIC_APP_SPLASH_IMAGE,
