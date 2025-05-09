@@ -21,10 +21,10 @@ export async function GET() {
       signature: process.env.FARCASTER_SIGNATURE,
     },
     frame: withValidProperties({
-      version: process.env.NEXT_PUBLIC_APP_VERSION,
+      version: "1",
       name: process.env.NEXT_PUBLIC_ONCHAINKIT_PROJECT_NAME,
-      subtitle: process.env.NEXT_PUBLIC_APP_SUBTITLE ?? "Subtitle",
-      description: process.env.NEXT_PUBLIC_APP_DESCRIPTION ?? "Description",
+      subtitle: process.env.NEXT_PUBLIC_APP_SUBTITLE,
+      description: process.env.NEXT_PUBLIC_APP_DESCRIPTION,
       screenshotUrls: [],
       iconUrl: process.env.NEXT_PUBLIC_APP_ICON,
       splashImageUrl: process.env.NEXT_PUBLIC_APP_SPLASH_IMAGE,
@@ -34,12 +34,10 @@ export async function GET() {
       primaryCategory: process.env.NEXT_PUBLIC_APP_PRIMARY_CATEGORY,
       tags: [],
       heroImageUrl: process.env.NEXT_PUBLIC_APP_HERO_IMAGE,
-      tagline: process.env.NEXT_PUBLIC_APP_TAGLINE ?? "My cool tagline",
+      tagline: process.env.NEXT_PUBLIC_APP_TAGLINE,
       ogTitle: process.env.NEXT_PUBLIC_APP_OG_TITLE,
-      ogDescription:
-        process.env.NEXT_PUBLIC_APP_OG_DESCRIPTION ?? "My cool minikit app",
+      ogDescription: process.env.NEXT_PUBLIC_APP_OG_DESCRIPTION,
       ogImageUrl: process.env.NEXT_PUBLIC_APP_OG_IMAGE,
-      imageUrl: "https://test-nft-mint-coral.vercel.app/embed.png",
     }),
   });
 }
