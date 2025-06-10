@@ -3,6 +3,9 @@ import {
   useMiniKit,
   useAddFrame,
   useOpenUrl,
+  useComposeCast,
+  useViewCast,
+  useIsInMiniApp,
 } from "@coinbase/onchainkit/minikit";
 import {
   Name,
@@ -39,6 +42,10 @@ export default function App() {
     const frameAdded = await addFrame();
     setFrameAdded(Boolean(frameAdded));
   }, [addFrame]);
+
+  const { isInMiniApp } = useIsInMiniApp();
+  const { composeCast } = useComposeCast();
+  const { viewCast } = useViewCast();
 
   const saveFrameButton = useMemo(() => {
     if (context && !context.client.added) {
@@ -94,15 +101,34 @@ export default function App() {
 
         <main className="flex-1">
           <NFTMintCard contractAddress="0x44dF55B47F24B73190657fE9107Ca43234bbc21E" />
+
+          <div className="flex flex-col gap-2">
+            <h1>Is in MiniApp: {isInMiniApp ? "Yes" : "No"}</h1>
+
+            <Button
+              onClick={() => {
+                composeCast({
+                  text: "Hello, world!",
+                });
+              }}
+            >
+              Compose Cast
+            </Button>
+
+            <Button
+              onClick={() => {
+                viewCast({
+                  hash: "0x32aed77ca61c92d253b98983f1e0fd20a8bd5745",
+                });
+              }}
+            >
+              View Cast
+            </Button>
+          </div>
         </main>
 
         <footer className="mt-2 pt-4 flex justify-center">
-          <Button
-            variant="ghost"
-            size="sm"
-            className="text-[var(--ock-text-foreground-muted)] text-xs"
-            onClick={() => openUrl("https://base.org/builders/minikit")}
-          >
+          <Button onClick={() => openUrl("https://base.org/builders/minikit")}>
             Built on Base with MiniKit
           </Button>
         </footer>
